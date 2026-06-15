@@ -1,29 +1,34 @@
+/* eslint-disable @next/next/no-img-element */
 import SearchBar from "./SearchBar";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen">
-      <img
-        src={
-          "https://www.wticabs.com:3001/global/app/v1/aws/getImage/offerimages/1737633139776_Places_to_visit_in_Kerela.png"
-        }
-        alt="Kerala"
-        className="absolute inset-0 w-full h-full object-cover"
+    <section className="relative min-h-screen overflow-hidden">
+      <Image
+        src="/images/spot.png"
+        alt="StayUndo Hero"
+        fill
+        priority
+        quality={100}
+        className="object-cover"
       />
 
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/10" />
 
       <div className="relative z-10 flex items-center justify-center min-h-screen">
         <div className="text-center max-w-5xl px-4">
-          <h1 className="text-white text-5xl md:text-7xl font-bold">
+          {/* <h1 className="text-white text-5xl md:text-7xl font-bold">
             Find Your Perfect Stay
-          </h1>
+          </h1> */}
 
-          <p className="text-white/80 mt-4 text-lg">
+          {/* <p className="text-white/80 mt-4 text-lg">
             Stays, Rentals & Essentials Across Kerala
-          </p>
+          </p> */}
 
-          <SearchBar />
+          {/* <div className="mt-14">
+            <SearchBar />
+          </div> */}
         </div>
       </div>
     </section>
