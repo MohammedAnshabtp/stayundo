@@ -3,6 +3,7 @@
 import { useAuth } from "@/contexts/AuthContext";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,8 +30,17 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 bg-white shadow-sm z-50">
-      <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-        <h1 className="text-2xl font-bold text-indigo-600">StayUndo</h1>
+      <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+        <Link href="/" className="flex items-center">
+          <Image
+            src="/images/logo.jpeg"
+            alt="StayUndo Logo"
+            width={160}
+            height={50}
+            priority
+            className="object-contain"
+          />
+        </Link>
 
         <nav className="flex gap-6">
           {navItems.map((item) => (
