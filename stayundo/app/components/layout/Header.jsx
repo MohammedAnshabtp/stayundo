@@ -23,8 +23,8 @@ export default function Header() {
       href: "/marketplace",
     },
     {
-      name: "Host",
-      href: "/host",
+      name: "Services",
+      href: "/services",
     },
   ];
 
