@@ -25,9 +25,9 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <AuthProvider>
-          {/* <Header /> */}
+          
           <AppShell> {children} </AppShell>
-          {/* <Footer /> */}
+          
         </AuthProvider>
       </body>
     </html>
