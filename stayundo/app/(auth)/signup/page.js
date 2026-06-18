@@ -2,11 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../../../contexts/AuthContext";
 import { User, ShieldCheck, CheckCircle } from "lucide-react";
 import Image from "next/image";
-import Progressbar from "../components/common/Progressbar";
+import AuthStepper from "../../components/AuthLayout/AuthStepper"
 
 export default function SignupPage() {
+  const router = useRouter();
+  const { signup } = useAuth();
+
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -25,63 +30,14 @@ export default function SignupPage() {
     e.preventDefault();
 
     console.log(formData);
-
-    // later
-    // dispatch(signup(formData))
-    // router.push('/verification')
+    signup(formData); // save user
+    router.push('/verification')
   };
 
-  const steps = [
-    {
-      label: "Details",
-      icon: User,
-      active: true,
-    },
-    {
-      label: "Verification",
-      icon: ShieldCheck,
-      active: false,
-    },
-    {
-      label: "Welcome",
-      icon: CheckCircle,
-      active: false,
-    },
-  ];
-
   return (
-    <div className="h-screen bg-gradient-to-br from-violet-50 via-white to-emerald-50">
-      {/* Header */}
-      <header className="flex items-center justify-between px-8 py-5">
-        {/* <h1 className="text-lg font-bold text-indigo-600">
-          StayUndo (സ്റ്റേയുണ്ടോ)
-        </h1> */}
-        <Link href="/" className="flex items-center">
-          <Image
-            src="/images/logo.jpeg"
-            alt="StayUndo Logo"
-            width={160}
-            height={50}
-            priority
-            className="object-contain"
-          />
-        </Link>
+    <>
+      <AuthStepper currentStep={1} />
 
-        <div className="flex items-center gap-2 text-sm">
-          <span className="text-gray-500">Already have an account?</span>
-
-          <Link
-            href="/login"
-            className="rounded-lg border border-violet-200 px-4 py-2 text-violet-600 hover:bg-violet-50"
-          >
-            Login
-          </Link>
-        </div>
-      </header>
-
-      <Progressbar steps={steps} />
-
-      {/* Card */}
       <div className="mx-auto mt-10 max-w-lg rounded-3xl bg-white p-8 shadow-xl">
         <h2 className="text-3xl font-bold text-slate-800">
           Create your account
@@ -168,15 +124,6 @@ export default function SignupPage() {
           </button>
         </form>
       </div>
-
-      {/* Footer */}
-      <footer className="mt-10 pb-8 text-center text-xs text-gray-400">
-        <p>© 2026 StayUndo. Kerala's Premium Accommodation Gateway.</p>
-        <div className="mt-2 flex justify-center gap-4">
-          <span>Terms of Service</span>
-          <span>Privacy Policy</span>
-        </div>
-      </footer>
-    </div>
+    </>
   );
 }
