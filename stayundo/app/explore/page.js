@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 // import Image from "next/image";
+import Link from "next/link";
 import { CheckCircle, ArrowRight, Map } from "lucide-react";
 import { services } from "../data/services";
 import { features } from "../data/features";
@@ -95,10 +96,10 @@ export default function ExplorePage() {
 
               {/* BUTTONS */}
               <div className="mt-10 flex flex-wrap gap-4">
-                <button className="flex items-center gap-2 rounded-xl bg-violet-600 px-8 py-4 text-sm font-semibold text-white transition hover:bg-violet-700">
+                <Link href="/property-details" className="flex items-center gap-2 rounded-xl bg-violet-600 px-8 py-4 text-sm font-semibold text-white transition hover:bg-violet-700">
                   Plan Your New Beginning
                   <ArrowRight />
-                </button>
+                </Link>
 
                 <button className=" flex items-center gap-2 rounded-xl border border-violet-200 px-8 py-4 text-sm font-semibold text-violet-600 transition hover:bg-violet-50">
                   Explore Your District
