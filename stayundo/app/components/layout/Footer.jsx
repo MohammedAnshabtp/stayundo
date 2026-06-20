@@ -24,26 +24,42 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-5">Company</h4>
           <ul className="space-y-3">
-            <li>About Us</li>
-            <li>Careers</li>
-            <li>Contact Support</li>
+            <li>
+              <Link href="/about-us">About Us</Link>
+            </li>
+            {/* <li>
+              <Link href="/careers">Careers</Link>
+            </li> */}
+            <li>
+              <Link href="/contact-support">Contact Support</Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-white font-semibold mb-5">Explore</h4>
           <ul className="space-y-3">
-            <li>Districts of Kerala</li>
-            <li>Marketplace</li>
-            <li>Services</li>
+            <li>
+              <Link href="/districts">Districts of Kerala</Link>
+            </li>
+            <li>
+              <Link href="/marketplace">Marketplace</Link>
+            </li>
+            <li>
+              <Link href="/services">Services</Link>
+            </li>
           </ul>
         </div>
 
         <div>
           <h4 className="text-white font-semibold mb-5">Legal</h4>
           <ul className="space-y-3">
-            <li>Terms of Service</li>
-            <li>Privacy Policy</li>
+            <li>
+              <Link href="/terms">Terms of Service</Link>
+            </li>
+            <li>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+            </li>
           </ul>
         </div>
       </div>
