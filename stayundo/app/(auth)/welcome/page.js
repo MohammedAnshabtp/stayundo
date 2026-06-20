@@ -1,12 +1,22 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AuthStepper from "../../components/AuthLayout/AuthStepper";
 import { ArrowRight, ShieldCheck } from "lucide-react";
 
 export default function WelcomePage() {
-  const user = JSON.parse(localStorage.getItem("authUser"));
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("authUser");
+
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
   return (
     <>
       {/* Stepper */}
@@ -24,7 +34,7 @@ export default function WelcomePage() {
             <h1 className="text-4xl font-bold leading-tight text-slate-900">
               You're all set,
               <br />
-              {user.fullName}
+              {user?.fullName || "Traveller"}
             </h1>
 
             <p className="mt-6 max-w-sm leading-7 text-slate-500">

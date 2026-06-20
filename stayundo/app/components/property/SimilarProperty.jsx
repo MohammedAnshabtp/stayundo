@@ -3,6 +3,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+
 export default function SimilarProperty() {
   const similarProperties = [
     {

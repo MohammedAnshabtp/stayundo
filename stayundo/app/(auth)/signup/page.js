@@ -1,12 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import Link from "next/link";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../../contexts/AuthContext";
-import { User, ShieldCheck, CheckCircle } from "lucide-react";
-import Image from "next/image";
-import AuthStepper from "../../components/AuthLayout/AuthStepper"
+import AuthStepper from "../../components/AuthLayout/AuthStepper";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -19,6 +16,21 @@ export default function SignupPage() {
     password: "",
   });
 
+  useEffect(() => {
+    const savedData = sessionStorage.getItem("signupData");
+
+    if (savedData) {
+      const data = JSON.parse(savedData);
+
+      setFormData({
+        fullName: data.fullName || "",
+        email: data.email || "",
+        phone: data.phone || "",
+        password: data.password || "",
+      });
+    }
+  }, []);
+
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -30,8 +42,9 @@ export default function SignupPage() {
     e.preventDefault();
 
     console.log(formData);
-    signup(formData); // save user
-    router.push('/verification')
+    // signup(formData); // save user
+    sessionStorage.setItem("signupData", JSON.stringify(formData));
+    router.push("/verification");
   };
 
   return (
