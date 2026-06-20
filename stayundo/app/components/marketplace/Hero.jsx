@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ArrowRight } from "lucide-react";
 
 export default function Hero() {

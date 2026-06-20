@@ -57,7 +57,7 @@ export default function Header() {
             </Link>
           ))}
         </nav>
-        {user ? (
+        {/* {user ? (
           <button
             onClick={logout}
             className="bg-red-500 text-white px-4 py-2 rounded-xl"
@@ -71,7 +71,7 @@ export default function Header() {
           >
             Login
           </Link>
-        )}
+        )} */}
       </div>
     </header>
   );
