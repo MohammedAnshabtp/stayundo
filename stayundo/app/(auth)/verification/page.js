@@ -32,31 +32,34 @@ export default function VerificationPage() {
     },
   ];
 
-const handleSubmit = (e) => {
-  e.preventDefault();
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const registeredUser = JSON.parse(
-    localStorage.getItem("registeredUser")
-  );
+    // const registeredUser = JSON.parse(
+    //   localStorage.getItem("registeredUser")
+    // );
+    const signupData = JSON.parse(sessionStorage.getItem("signupData"));
 
-  const verifiedUser = {
-    ...registeredUser,
-    verification: {
-      idType: selectedId,
-      idNumber,
-      file: file?.name || null,
-      verified: true,
-    },
+    const verifiedUser = {
+      ...signupData,
+      verification: {
+        idType: selectedId,
+        idNumber,
+        file: file?.name || null,
+        verified: true,
+      },
+    };
+
+    // save final user
+    localStorage.setItem("authUser", JSON.stringify(verifiedUser));
+    localStorage.setItem("registeredUser", JSON.stringify(verifiedUser));
+
+    // login user in context
+    login(verifiedUser);
+
+    sessionStorage.removeItem("signupData");
+    router.push("/welcome");
   };
-
-  // save final user
-  localStorage.setItem("authUser", JSON.stringify(verifiedUser));
-
-  // login user in context
-  login(verifiedUser);
-
-  router.push("/welcome");
-};
 
   return (
     <>
@@ -130,7 +133,7 @@ const handleSubmit = (e) => {
             <input
               type="text"
               placeholder="Enter your ID number"
-              onChange={(e)=>setIdNumber(e.target.value)}
+              onChange={(e) => setIdNumber(e.target.value)}
               className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none transition focus:border-violet-500"
             />
           </div>
@@ -154,7 +157,11 @@ const handleSubmit = (e) => {
                 JPG, PNG or PDF (Max. 5MB)
               </p>
 
-              <input type="file" className="hidden" onChange={(e) => setFile(e.target.files[0])}/>
+              <input
+                type="file"
+                className="hidden"
+                onChange={(e) => setFile(e.target.files[0])}
+              />
             </label>
           </div>
 
