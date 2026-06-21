@@ -2,6 +2,44 @@
 import { services } from "../../data/services";
 
 export default function Essentials() {
+  const featuredItems = [
+    {
+      id: 1,
+      title: "Mattress",
+      price: "₹2,500",
+      district: "Ernakulam",
+      condition: "Like New",
+      image:
+        "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200",
+    },
+    {
+      id: 2,
+      title: "Study Table",
+      price: "₹1,800",
+      district: "Kozhikode",
+      condition: "Good",
+      image:
+        "https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?q=80&w=1200",
+    },
+    {
+      id: 3,
+      title: "Induction Stove",
+      price: "₹1,200",
+      district: "Thrissur",
+      condition: "Excellent",
+      image:
+        "https://images.unsplash.com/photo-1556911220-bff31c812dba?q=80&w=1200",
+    },
+    {
+      id: 4,
+      title: "Office Chair",
+      price: "₹3,000",
+      district: "Malappuram",
+      condition: "Like New",
+      image:
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQJvjphUuCQkST_75Xa85HfxFBJnCYRicXSGkBlBmV0WYkl2cbDoyQDK6dc&s=10",
+    },
+  ];
   return (
     <section className="bg-[#faf8ff]">
       {/* Hero */}
@@ -60,22 +98,42 @@ export default function Essentials() {
         <h2 className="text-3xl font-bold mb-8">Popular Essentials</h2>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {["Mattress", "Study Table", "Induction Stove", "Office Chair"].map(
-            (item) => (
-              <div
-                key={item}
-                className="bg-white rounded-3xl border p-6 shadow-sm hover:shadow-lg transition"
-              >
-                <div className="h-48 rounded-2xl bg-gray-100 mb-4" />
-
-                <h3 className="font-semibold">{item}</h3>
-
-                <p className="text-sm text-gray-500 mt-2">
-                  Available for Rent or Purchase
-                </p>
+          {featuredItems.map((item) => (
+            <div
+              key={item.id}
+              className="group bg-white rounded-3xl overflow-hidden border shadow-sm hover:shadow-xl transition"
+            >
+              <div className="h-56 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+                />
               </div>
-            )
-          )}
+
+              <div className="p-5">
+                <div className="flex justify-between items-start">
+                  <h3 className="font-semibold text-lg">{item.title}</h3>
+
+                  <span className="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full">
+                    {item.condition}
+                  </span>
+                </div>
+
+                <p className="text-gray-500 text-sm mt-2">📍 {item.district}</p>
+
+                <div className="mt-4 flex items-center justify-between">
+                  <span className="text-xl font-bold text-indigo-600">
+                    {item.price}
+                  </span>
+
+                  <button className="text-sm font-medium text-indigo-600 hover:underline">
+                    View →
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
 
