@@ -101,10 +101,10 @@ export default function ExplorePage() {
                   <ArrowRight />
                 </Link>
 
-                <button className=" flex items-center gap-2 rounded-xl border border-violet-200 px-8 py-4 text-sm font-semibold text-violet-600 transition hover:bg-violet-50">
+                <Link href="/explore-district" className=" flex items-center gap-2 rounded-xl border border-violet-200 px-8 py-4 text-sm font-semibold text-violet-600 transition hover:bg-violet-50">
                   Explore Your District
                   <Map />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
