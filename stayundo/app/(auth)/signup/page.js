@@ -2,12 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../../../contexts/AuthContext";
+// import { useAuth } from "../../../contexts/AuthContext";
 import AuthStepper from "../../components/AuthLayout/AuthStepper";
 
 export default function SignupPage() {
   const router = useRouter();
-  const { signup } = useAuth();
+  // const { signup } = useAuth();
 
   const [formData, setFormData] = useState({
     fullName: "",
