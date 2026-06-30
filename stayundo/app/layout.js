@@ -3,7 +3,9 @@ import "./globals.css";
 import Header from "./components/layout/Header";
 import Footer from "./components/layout/Footer";
 import AppShell from "./components/layout/AppShell"
-import { AuthProvider } from "@/contexts/AuthContext";
+// import { AuthProvider } from "@/contexts/AuthContext";
+import AuthProvider from "./components/AuthProvider";
+import ReduxProvider from "./store/provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,11 +26,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AuthProvider>
-          
-          <AppShell> {children} </AppShell>
-          
+        <ReduxProvider>
+        <AuthProvider>         
+          <AppShell> {children} </AppShell>         
         </AuthProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

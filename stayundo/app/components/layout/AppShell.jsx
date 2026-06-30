@@ -8,7 +8,7 @@ export default function AppShell({ children }) {
   const pathname = usePathname();
 
   const hideLayout =
-    pathname === "/signup" || pathname === "/verification" || pathname === "/login";
+    pathname === "/signup" || pathname === "/verification" || pathname === "/login" || pathname === "/welcome";
 
   return (
     <>
