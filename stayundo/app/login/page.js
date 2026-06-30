@@ -242,6 +242,7 @@ export default function LoginPage() {
 
       const token = await user.getIdToken();
       console.log("Firebase ID Token:",token)
+      
 
       dispatch(
         loginSuccess({
