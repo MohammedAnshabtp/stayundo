@@ -216,7 +216,7 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
 
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../store/authSlice";
+import { loginSuccess } from "../features/auth/authSlice";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -235,14 +235,13 @@ export default function LoginPage() {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password,
+        password
       );
 
       const user = userCredential.user;
 
       const token = await user.getIdToken();
-      console.log("Firebase ID Token:",token)
-      
+      console.log("Firebase ID Token:", token);
 
       dispatch(
         loginSuccess({
@@ -252,7 +251,7 @@ export default function LoginPage() {
             displayName: user.displayName,
           },
           token,
-        }),
+        })
       );
 
       router.push("/");
@@ -283,8 +282,8 @@ export default function LoginPage() {
           </h3>
 
           <p className="mt-3 text-sm leading-6 text-slate-600">
-            Unlock access to premium homestays and hidden gems across God's Own
-            Country.
+            Unlock access to premium homestays and hidden gems across God&apos;s
+            Own Country.
           </p>
         </div>
       </div>
@@ -418,7 +417,7 @@ export default function LoginPage() {
 
             {/* Signup */}
             <p className="text-center text-sm text-slate-500">
-              Don't have an account?{" "}
+              Don&apos;t have an account?{" "}
               <Link
                 href="/signup"
                 className="font-semibold text-violet-600 hover:underline"

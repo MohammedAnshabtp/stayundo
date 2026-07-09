@@ -186,30 +186,20 @@
 //   );
 // }
 
-
 // Firebase Authentication + Redux Toolkit
 
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  ArrowLeft,
-  Upload,
-  IdCard,
-  Vote,
-  BadgeCheck,
-} from "lucide-react";
+import { ArrowLeft, Upload, IdCard, Vote, BadgeCheck } from "lucide-react";
 import AuthStepper from "../../components/AuthLayout/AuthStepper";
 
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../../lib/firebase";
 
 import { useDispatch } from "react-redux";
-import { loginSuccess } from "../../store/authSlice";
+import { loginSuccess } from "../../features/auth/authSlice";
 
 export default function VerificationPage() {
   const router = useRouter();
@@ -245,9 +235,7 @@ export default function VerificationPage() {
     try {
       setLoading(true);
 
-      const signupData = JSON.parse(
-        sessionStorage.getItem("signupData")
-      );
+      const signupData = JSON.parse(sessionStorage.getItem("signupData"));
 
       if (!signupData) {
         alert("Signup data not found.");
@@ -255,12 +243,11 @@ export default function VerificationPage() {
       }
 
       // Create Firebase User
-      const userCredential =
-        await createUserWithEmailAndPassword(
-          auth,
-          signupData.email,
-          signupData.password
-        );
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        signupData.email,
+        signupData.password
+      );
 
       // Save Full Name in Firebase
       await updateProfile(userCredential.user, {
@@ -268,8 +255,7 @@ export default function VerificationPage() {
       });
 
       // Get Firebase Token
-      const token =
-        await userCredential.user.getIdToken();
+      const token = await userCredential.user.getIdToken();
 
       // Save User in Redux
       dispatch(
@@ -326,8 +312,8 @@ export default function VerificationPage() {
         </h2>
 
         <p className="mt-2 text-sm text-gray-500">
-          To ensure a safe community, please provide a valid
-          government-issued ID.
+          To ensure a safe community, please provide a valid government-issued
+          ID.
         </p>
 
         <form onSubmit={handleSubmit}>
@@ -345,9 +331,7 @@ export default function VerificationPage() {
                   <button
                     key={item.id}
                     type="button"
-                    onClick={() =>
-                      setSelectedId(item.id)
-                    }
+                    onClick={() => setSelectedId(item.id)}
                     className={`rounded-xl border p-4 transition ${
                       selectedId === item.id
                         ? "border-violet-500 bg-violet-50"
@@ -363,9 +347,7 @@ export default function VerificationPage() {
                       }`}
                     />
 
-                    <p className="text-sm font-medium">
-                      {item.label}
-                    </p>
+                    <p className="text-sm font-medium">{item.label}</p>
                   </button>
                 );
               })}
@@ -381,9 +363,7 @@ export default function VerificationPage() {
             <input
               type="text"
               value={idNumber}
-              onChange={(e) =>
-                setIdNumber(e.target.value)
-              }
+              onChange={(e) => setIdNumber(e.target.value)}
               placeholder="Enter your ID number"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 outline-none focus:border-violet-500"
             />
@@ -397,10 +377,7 @@ export default function VerificationPage() {
 
             <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gray-200 px-6 py-10 transition hover:border-violet-400">
               <div className="flex h-14 w-14 items-center justify-center rounded-full bg-violet-100">
-                <Upload
-                  size={24}
-                  className="text-violet-600"
-                />
+                <Upload size={24} className="text-violet-600" />
               </div>
 
               <p className="mt-4 font-medium text-gray-700">
@@ -412,17 +389,13 @@ export default function VerificationPage() {
               </p>
 
               {file && (
-                <p className="mt-3 text-sm text-green-600">
-                  {file.name}
-                </p>
+                <p className="mt-3 text-sm text-green-600">{file.name}</p>
               )}
 
               <input
                 type="file"
                 className="hidden"
-                onChange={(e) =>
-                  setFile(e.target.files[0])
-                }
+                onChange={(e) => setFile(e.target.files[0])}
               />
             </label>
           </div>
@@ -432,9 +405,7 @@ export default function VerificationPage() {
             disabled={loading}
             className="mt-8 w-full rounded-xl bg-gradient-to-r from-indigo-600 to-violet-500 py-4 font-semibold text-white shadow-lg transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
           >
-            {loading
-              ? "Creating Account..."
-              : "Complete Verification"}
+            {loading ? "Creating Account..." : "Complete Verification"}
           </button>
 
           <button
