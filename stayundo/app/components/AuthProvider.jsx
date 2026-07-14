@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "../lib/firebase";
-import { loginSuccess, logout } from "../store/authSlice";
+import { loginSuccess } from "../features/auth/authSlice";
 
 export default function AuthProvider({ children }) {
   const dispatch = useDispatch();

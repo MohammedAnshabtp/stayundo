@@ -171,7 +171,7 @@ export default function WelcomePage() {
             <h1 className="text-4xl font-bold leading-tight text-slate-900">
               You're all set,
               <br />
-              {user?.displayName || "Traveller"}
+              {user?.user.name || "Traveller"}
             </h1>
 
             <p className="mt-6 max-w-sm leading-7 text-slate-500">
