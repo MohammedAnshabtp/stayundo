@@ -242,7 +242,7 @@ export default function LoginPage() {
       console.log("Firebase ID Token:", token);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/profile/`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}profile/`,
         {
           method: "GET",
           headers: {
