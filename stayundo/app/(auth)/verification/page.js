@@ -256,24 +256,56 @@ export default function VerificationPage() {
 
       // Get Firebase Token
       const token = await userCredential.user.getIdToken();
+      console.log("Firebase ID Token:", token);
+
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/profile/`,
+        {
+          method: "PATCH",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: signupData.fullName,
+            email: signupData.email,
+            phone: signupData.phone,
+            location: "",
+            profile_image: "",
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update profile");
+      }
+
+      const profile = await response.json();
+      console.log("Profile:", profile);
 
       // Save User in Redux
+      // dispatch(
+      //   loginSuccess({
+      //     user: {
+      //       uid: userCredential.user.uid,
+      //       email: userCredential.user.email,
+      //       displayName: signupData.fullName,
+      //       phone: signupData.phone,
+
+      //       verification: {
+      //         idType: selectedId,
+      //         idNumber,
+      //         file: file?.name || "",
+      //         verified: true,
+      //       },
+      //     },
+
+      //     token,
+      //   })
+      // );
       dispatch(
         loginSuccess({
-          user: {
-            uid: userCredential.user.uid,
-            email: userCredential.user.email,
-            displayName: signupData.fullName,
-            phone: signupData.phone,
-
-            verification: {
-              idType: selectedId,
-              idNumber,
-              file: file?.name || "",
-              verified: true,
-            },
-          },
-
+          user: profile,
           token,
         })
       );

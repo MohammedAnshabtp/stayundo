@@ -229,33 +229,45 @@ export default function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
+    try {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
 
-      const user = userCredential.user;
-
-      const token = await user.getIdToken();
+      const token = await userCredential.user.getIdToken();
       console.log("Firebase ID Token:", token);
 
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/profile/`,
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch profile");
+      }
+
+      const profile = await response.json();
+      console.log("PROFILE:",profile)
       dispatch(
         loginSuccess({
-          user: {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
-          },
+          user: profile,
           token,
-        })
+        }),
       );
 
       router.push("/");
     } catch (error) {
+      console.error(error);
+
       alert(error.message);
     } finally {
       setLoading(false);

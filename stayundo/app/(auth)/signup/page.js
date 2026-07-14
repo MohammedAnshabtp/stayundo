@@ -2,12 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-// import { useAuth } from "../../../contexts/AuthContext";
 import AuthStepper from "../../components/AuthLayout/AuthStepper";
 
 export default function SignupPage() {
   const router = useRouter();
-  // const { signup } = useAuth();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -42,7 +40,6 @@ export default function SignupPage() {
     e.preventDefault();
 
     console.log(formData);
-    // signup(formData); // save user
     sessionStorage.setItem("signupData", JSON.stringify(formData));
     router.push("/verification");
   };
