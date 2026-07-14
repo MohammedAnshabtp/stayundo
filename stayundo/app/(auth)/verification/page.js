@@ -259,7 +259,7 @@ export default function VerificationPage() {
       console.log("Firebase ID Token:", token);
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}profile/`,
+        `${process.env.NEXT_PUBLIC_API_BASE_URL}/profile/`,
         {
           method: "PATCH",
           headers: {
